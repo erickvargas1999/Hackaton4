@@ -3,7 +3,7 @@
   <context confirmationNeeded="false" hide="false" name="Default"/>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" value="Info" show="false"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="40" show="false"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="0" show="false"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" value="" show="false"/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" value="" show="false"/>
@@ -99,12 +99,141 @@
     <elementParameter field="TEXT" name="FOOTER_CODE" value="" show="false"/>
     <elementParameter field="TEXT" name="FOOTER_IMPORT" value="" show="false"/>
   </parameters>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="280" posY="120">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_1" show="false"/>
+  <node componentName="tBigQuerySQLRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="40" posY="200">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBigQuerySQLRow_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" value="enc:system.encryption.key.v1:p3x8N1WwTNMOPeO2ZjTS7/4fEoutgLDQqK9a56oZ" show="false"/>
+    <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;" show="false"/>
+    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;D:/HP/Descargas/evargashackaton4-538962029d61.json&quot;"/>
+    <elementParameter field="TEXT" name="CLIENT_ID" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" value="enc:system.encryption.key.v1:JJXiaasXQtHNGrUZ/cH+66zM+/WrIQ89KRuPyIfx" show="false"/>
+    <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;evargashackaton4&quot;"/>
+    <elementParameter field="TEXT" name="AUTHORIZATION_CODE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;INSERT INTO `evargashackaton4.staging_hackaton.control_procesos` &#xD;&#xA;(id_ejecucion, nombre_archivo, fuente, estado, filas_insertadas) &#xD;&#xA;VALUES ('&quot; + jobName + &quot;_&quot; + TalendDate.getDate(&quot;yyyyMMddHHmmss&quot;) + &quot;', 'API_GDP_WORLD_BANK.csv', 'World Bank S3', 'PROCESANDO', 0)&quot;"/>
+    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" value="&quot;https://bigquery.googleapis.com&quot;" show="false"/>
+    <elementParameter field="FILE" name="TOKEN_NAME" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/token.properties&quot;" show="false"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" value="&quot;,&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" value="&quot;.&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
+    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="AUTO" show="false"/>
+    <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tBigQuerySQLRow_1"/>
+  </node>
+  <node componentName="tS3Connection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="280" posY="200">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tS3Connection_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="CREDENTIAL_PROVIDER" value="STATIC_CREDENTIALS"/>
+    <elementParameter field="FILE" name="PROFILE_PATH" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROFILE_NAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="ACCESS_KEY" value="&quot;AKIAVDBMIMD2POYBQRP4&quot;"/>
+    <elementParameter field="PASSWORD" name="SECRET_KEY" value="enc:system.encryption.key.v1:T0co2xyogDKn3TyFnBLZ8HOrgZNXJMhwSwb37rw0fro/AvQ8vWRTaTn2KNH8LwjCRqyzZmAHvCRG90Agw7Ql2QE5auxCAw=="/>
+    <elementParameter field="CHECK" name="ASSUME_ROLE" value="false"/>
+    <elementParameter field="TEXT" name="ARN" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="ROLE_SESSION_NAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SESSION_DURATION" value="15" show="false"/>
+    <elementParameter field="OPENED_LIST" name="REGION" value="&quot;us-east-1&quot;"/>
+    <elementParameter field="CHECK" name="ENCRYPT" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="KEY_TYPE" value="KMS_CMK" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ALGORITHM_SYMMETRIC_MASTER_KEY" value="AES" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ALGORITHM_ASYMMETRIC_MASTER_KEY" value="RSA" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ENCODING" value="BASE64" show="false"/>
+    <elementParameter field="PASSWORD" name="ENCRYPTED_KEY_CMK" value="enc:system.encryption.key.v1:VaaTFb+p0sEPjPkd8VJ7k1xLIXTdg8hax0lcpS9d" show="false"/>
+    <elementParameter field="PASSWORD" name="ENCRYPTED_KEY_BASE64" value="enc:system.encryption.key.v1:UhIPVV1p0i6ZNSInXculUC+Q6mVPVtOy133rFkgu" show="false"/>
+    <elementParameter field="FILE" name="ENCRYPTED_KEY_X509" value="&quot;&quot;" show="false"/>
+    <elementParameter field="FILE" name="PUBLIC_KEY" value="&quot;&quot;" show="false"/>
+    <elementParameter field="FILE" name="PRIVATE_KEY" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT" value="&quot;s3.amazonaws.com&quot;" show="false"/>
+    <elementParameter field="CHECK" name="PATHSTYLEACCESS" value="false" show="false"/>
+    <elementParameter field="FILE" name="WEB_IDENTITY_TOKEN_FILE" value="" show="false"/>
+    <elementParameter field="TEXT" name="WEB_TOKEN_ARN" value="" show="false"/>
+    <elementParameter field="TEXT" name="WEB_TOKEN_ROLE_SESSION_NAME" value="" show="false"/>
+    <elementParameter field="CHECK" name="CONFIG_CLIENT" value="false"/>
+    <elementParameter field="TABLE" name="CLIENT_CONFIGURATION" show="false"/>
+    <elementParameter field="CHECK" name="SET_STS_ENDPOINT" value="false" show="false"/>
+    <elementParameter field="TEXT" name="STS_ENDPOINT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="OPENED_LIST" name="SIGNING_REGION" value="DEFAULT" show="false"/>
+    <elementParameter field="TEXT" name="EXTERNALID" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SERIALNUMBER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TOKENCODE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="TAGS" show="false"/>
+    <elementParameter field="TABLE" name="POLICY_TABLE" show="false"/>
+    <elementParameter field="MEMO" name="POLICY" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="CHECK_ACCESSIBILITY" value="true"/>
+    <elementParameter field="CLOSED_LIST" name="CHECK_METHOD" value="BY_ACCOUNT_OWNER"/>
+    <elementParameter field="CHECK" name="ENABLE_ACCELERATE" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tS3Get" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="440" posY="200">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tS3Get_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tS3Connection_1"/>
+    <elementParameter field="CLOSED_LIST" name="CREDENTIAL_PROVIDER" value="STATIC_CREDENTIALS" show="false"/>
+    <elementParameter field="FILE" name="PROFILE_PATH" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROFILE_NAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="ACCESS_KEY" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="SECRET_KEY" value="enc:system.encryption.key.v1:qL4sNHuaLvfC9FR7ajpvBikJmLbwR3Wl7K+nDWdE" show="false"/>
+    <elementParameter field="CHECK" name="ASSUME_ROLE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ARN" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="ROLE_SESSION_NAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SESSION_DURATION" value="15" show="false"/>
+    <elementParameter field="OPENED_LIST" name="REGION" value="DEFAULT" show="false"/>
+    <elementParameter field="CHECK" name="ENCRYPT" value="false" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="KEY_TYPE" value="KMS_CMK" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ALGORITHM_SYMMETRIC_MASTER_KEY" value="AES" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ALGORITHM_ASYMMETRIC_MASTER_KEY" value="RSA" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ENCODING" value="BASE64" show="false"/>
+    <elementParameter field="PASSWORD" name="ENCRYPTED_KEY_CMK" value="enc:system.encryption.key.v1:hg1Tlvp6AE6GUo0vT5Nb+7uUd3ycxSlH8oPlRyk3" show="false"/>
+    <elementParameter field="PASSWORD" name="ENCRYPTED_KEY_BASE64" value="enc:system.encryption.key.v1:+0RJg60eZ1HUFQAijuad+SdoDXV7PkAe6EvjEnl3" show="false"/>
+    <elementParameter field="FILE" name="ENCRYPTED_KEY_X509" value="&quot;&quot;" show="false"/>
+    <elementParameter field="FILE" name="PUBLIC_KEY" value="&quot;&quot;" show="false"/>
+    <elementParameter field="FILE" name="PRIVATE_KEY" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="BUCKET" value="&quot;evargas-hackaton4&quot;"/>
+    <elementParameter field="TEXT" name="KEY" value="&quot;GDP.csv&quot;"/>
+    <elementParameter field="FILE" name="FILE" value="&quot;C:/temp/GDP.csv&quot;"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="FILE" name="WEB_IDENTITY_TOKEN_FILE" value="" show="false"/>
+    <elementParameter field="TEXT" name="WEB_TOKEN_ARN" value="" show="false"/>
+    <elementParameter field="TEXT" name="WEB_TOKEN_ROLE_SESSION_NAME" value="" show="false"/>
+    <elementParameter field="CHECK" name="CONFIG_CLIENT" value="false" show="false"/>
+    <elementParameter field="TABLE" name="CLIENT_CONFIGURATION" show="false"/>
+    <elementParameter field="CHECK" name="SET_STS_ENDPOINT" value="false" show="false"/>
+    <elementParameter field="TEXT" name="STS_ENDPOINT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="OPENED_LIST" name="SIGNING_REGION" value="DEFAULT" show="false"/>
+    <elementParameter field="TEXT" name="EXTERNALID" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SERIALNUMBER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TOKENCODE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="TAGS" show="false"/>
+    <elementParameter field="TABLE" name="POLICY_TABLE" show="false"/>
+    <elementParameter field="MEMO" name="POLICY" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_ACCELERATE" value="false" show="false"/>
+    <elementParameter field="CHECK" name="USE_SELECT" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="FILE_TYPE" value="CSV" show="false"/>
+    <elementParameter field="TEXT" name="QUERY" value="&quot;select s._1 from S3Object s&quot;" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="COMPRESSED_TYPE" value="NONE" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="JSON_TYPE" value="LINES" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="HEADER_TYPE" value="USE" show="false"/>
+    <elementParameter field="TEXT" name="FIELD_SEPARATOR" value="&quot;,&quot;" show="false"/>
+    <elementParameter field="CHECK" name="ADVANCE_CSV" value="false" show="false"/>
+    <elementParameter field="TABLE" name="CSV_CONFIGURATION" show="false"/>
+    <elementParameter field="CHECK" name="GLOBALMAP_INPUTSTREAM" value="false" show="false"/>
+    <elementParameter field="CHECK" name="CONFIG_OUTPUT" value="false" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="OUTPUT_TYPE" value="CSV" show="false"/>
+    <elementParameter field="TABLE" name="OUTPUT_CSV_CONFIG" show="false"/>
+    <elementParameter field="TEXT" name="JSON_RECORDDELIMITER" value="&quot;\n&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_TEMP_FILES_FOR_PARALLEL_DOWNLOAD" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="680" posY="200">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_2" show="false"/>
     <elementParameter field="TEXT" name="COMPONENT_NAME" value="tFileInputDelimited" show="false"/>
     <elementParameter field="TEXT" name="VERSION" value="0.102 (ALPHA)" show="false"/>
     <elementParameter field="TEXT" name="FAMILY" value="File/Input" show="false"/>
-    <elementParameter field="CHECK" name="START" value="true" show="false"/>
+    <elementParameter field="CHECK" name="START" value="false" show="false"/>
     <elementParameter field="CHECK" name="STARTABLE" value="true" show="false"/>
     <elementParameter field="CHECK" name="SUBTREE_START" value="true" show="false"/>
     <elementParameter field="CHECK" name="END_OF_FLOW" value="false" show="false"/>
@@ -128,7 +257,7 @@
     <elementParameter field="CHECK" name="UNCOMPRESS" value="false"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
     <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:SCHEMA_TYPE" value="REPOSITORY" show="false"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:REPOSITORY_SCHEMA_TYPE" value="_4rRRcC7BEfG0bqjInu4y5w - metadata" show="false"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:REPOSITORY_SCHEMA_TYPE" value="_8IkqUC63EfG0bqjInu4y5w - MET_World_Bank" show="false"/>
     <elementParameter field="DIRECTORY" name="TEMP_DIR" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace&quot;" show="false"/>
     <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" value="&quot;,&quot;" show="false"/>
@@ -145,138 +274,10 @@
       <elementValue elementRef="TRIM" value="false" id="5"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Indicator_Code" id="6"/>
       <elementValue elementRef="TRIM" value="false" id="7"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1960" id="8"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="_2022" id="8"/>
       <elementValue elementRef="TRIM" value="false" id="9"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1961" id="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="_2024" id="10"/>
       <elementValue elementRef="TRIM" value="false" id="11"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1962" id="12"/>
-      <elementValue elementRef="TRIM" value="false" id="13"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1963" id="14"/>
-      <elementValue elementRef="TRIM" value="false" id="15"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1964" id="16"/>
-      <elementValue elementRef="TRIM" value="false" id="17"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1965" id="18"/>
-      <elementValue elementRef="TRIM" value="false" id="19"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1966" id="20"/>
-      <elementValue elementRef="TRIM" value="false" id="21"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1967" id="22"/>
-      <elementValue elementRef="TRIM" value="false" id="23"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1968" id="24"/>
-      <elementValue elementRef="TRIM" value="false" id="25"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1969" id="26"/>
-      <elementValue elementRef="TRIM" value="false" id="27"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1970" id="28"/>
-      <elementValue elementRef="TRIM" value="false" id="29"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1971" id="30"/>
-      <elementValue elementRef="TRIM" value="false" id="31"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1972" id="32"/>
-      <elementValue elementRef="TRIM" value="false" id="33"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1973" id="34"/>
-      <elementValue elementRef="TRIM" value="false" id="35"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1974" id="36"/>
-      <elementValue elementRef="TRIM" value="false" id="37"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1975" id="38"/>
-      <elementValue elementRef="TRIM" value="false" id="39"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1976" id="40"/>
-      <elementValue elementRef="TRIM" value="false" id="41"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1977" id="42"/>
-      <elementValue elementRef="TRIM" value="false" id="43"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1978" id="44"/>
-      <elementValue elementRef="TRIM" value="false" id="45"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1979" id="46"/>
-      <elementValue elementRef="TRIM" value="false" id="47"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1980" id="48"/>
-      <elementValue elementRef="TRIM" value="false" id="49"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1981" id="50"/>
-      <elementValue elementRef="TRIM" value="false" id="51"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1982" id="52"/>
-      <elementValue elementRef="TRIM" value="false" id="53"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1983" id="54"/>
-      <elementValue elementRef="TRIM" value="false" id="55"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1984" id="56"/>
-      <elementValue elementRef="TRIM" value="false" id="57"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1985" id="58"/>
-      <elementValue elementRef="TRIM" value="false" id="59"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1986" id="60"/>
-      <elementValue elementRef="TRIM" value="false" id="61"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1987" id="62"/>
-      <elementValue elementRef="TRIM" value="false" id="63"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1988" id="64"/>
-      <elementValue elementRef="TRIM" value="false" id="65"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1989" id="66"/>
-      <elementValue elementRef="TRIM" value="false" id="67"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1990" id="68"/>
-      <elementValue elementRef="TRIM" value="false" id="69"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1991" id="70"/>
-      <elementValue elementRef="TRIM" value="false" id="71"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1992" id="72"/>
-      <elementValue elementRef="TRIM" value="false" id="73"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1993" id="74"/>
-      <elementValue elementRef="TRIM" value="false" id="75"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1994" id="76"/>
-      <elementValue elementRef="TRIM" value="false" id="77"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1995" id="78"/>
-      <elementValue elementRef="TRIM" value="false" id="79"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1996" id="80"/>
-      <elementValue elementRef="TRIM" value="false" id="81"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1997" id="82"/>
-      <elementValue elementRef="TRIM" value="false" id="83"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1998" id="84"/>
-      <elementValue elementRef="TRIM" value="false" id="85"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1999" id="86"/>
-      <elementValue elementRef="TRIM" value="false" id="87"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2000" id="88"/>
-      <elementValue elementRef="TRIM" value="false" id="89"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2001" id="90"/>
-      <elementValue elementRef="TRIM" value="false" id="91"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2002" id="92"/>
-      <elementValue elementRef="TRIM" value="false" id="93"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2003" id="94"/>
-      <elementValue elementRef="TRIM" value="false" id="95"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2004" id="96"/>
-      <elementValue elementRef="TRIM" value="false" id="97"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2005" id="98"/>
-      <elementValue elementRef="TRIM" value="false" id="99"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2006" id="100"/>
-      <elementValue elementRef="TRIM" value="false" id="101"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2007" id="102"/>
-      <elementValue elementRef="TRIM" value="false" id="103"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2008" id="104"/>
-      <elementValue elementRef="TRIM" value="false" id="105"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2009" id="106"/>
-      <elementValue elementRef="TRIM" value="false" id="107"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2010" id="108"/>
-      <elementValue elementRef="TRIM" value="false" id="109"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2011" id="110"/>
-      <elementValue elementRef="TRIM" value="false" id="111"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2012" id="112"/>
-      <elementValue elementRef="TRIM" value="false" id="113"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2013" id="114"/>
-      <elementValue elementRef="TRIM" value="false" id="115"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2014" id="116"/>
-      <elementValue elementRef="TRIM" value="false" id="117"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2015" id="118"/>
-      <elementValue elementRef="TRIM" value="false" id="119"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2016" id="120"/>
-      <elementValue elementRef="TRIM" value="false" id="121"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2017" id="122"/>
-      <elementValue elementRef="TRIM" value="false" id="123"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2018" id="124"/>
-      <elementValue elementRef="TRIM" value="false" id="125"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2019" id="126"/>
-      <elementValue elementRef="TRIM" value="false" id="127"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2020" id="128"/>
-      <elementValue elementRef="TRIM" value="false" id="129"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2021" id="130"/>
-      <elementValue elementRef="TRIM" value="false" id="131"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2022" id="132"/>
-      <elementValue elementRef="TRIM" value="false" id="133"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2023" id="134"/>
-      <elementValue elementRef="TRIM" value="false" id="135"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2024" id="136"/>
-      <elementValue elementRef="TRIM" value="false" id="137"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2025" id="138"/>
-      <elementValue elementRef="TRIM" value="false" id="139"/>
     </elementParameter>
     <elementParameter field="CHECK" name="CHECK_FIELDS_NUM" value="false"/>
     <elementParameter field="CHECK" name="CHECK_DATE" value="false"/>
@@ -293,292 +294,36 @@
       <elementValue elementRef="DECODE" value="false" id="5"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Indicator_Code" id="6"/>
       <elementValue elementRef="DECODE" value="false" id="7"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1960" id="8"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="_2022" id="8"/>
       <elementValue elementRef="DECODE" value="false" id="9"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1961" id="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="_2024" id="10"/>
       <elementValue elementRef="DECODE" value="false" id="11"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1962" id="12"/>
-      <elementValue elementRef="DECODE" value="false" id="13"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1963" id="14"/>
-      <elementValue elementRef="DECODE" value="false" id="15"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1964" id="16"/>
-      <elementValue elementRef="DECODE" value="false" id="17"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1965" id="18"/>
-      <elementValue elementRef="DECODE" value="false" id="19"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1966" id="20"/>
-      <elementValue elementRef="DECODE" value="false" id="21"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1967" id="22"/>
-      <elementValue elementRef="DECODE" value="false" id="23"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1968" id="24"/>
-      <elementValue elementRef="DECODE" value="false" id="25"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1969" id="26"/>
-      <elementValue elementRef="DECODE" value="false" id="27"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1970" id="28"/>
-      <elementValue elementRef="DECODE" value="false" id="29"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1971" id="30"/>
-      <elementValue elementRef="DECODE" value="false" id="31"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1972" id="32"/>
-      <elementValue elementRef="DECODE" value="false" id="33"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1973" id="34"/>
-      <elementValue elementRef="DECODE" value="false" id="35"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1974" id="36"/>
-      <elementValue elementRef="DECODE" value="false" id="37"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1975" id="38"/>
-      <elementValue elementRef="DECODE" value="false" id="39"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1976" id="40"/>
-      <elementValue elementRef="DECODE" value="false" id="41"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1977" id="42"/>
-      <elementValue elementRef="DECODE" value="false" id="43"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1978" id="44"/>
-      <elementValue elementRef="DECODE" value="false" id="45"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1979" id="46"/>
-      <elementValue elementRef="DECODE" value="false" id="47"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1980" id="48"/>
-      <elementValue elementRef="DECODE" value="false" id="49"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1981" id="50"/>
-      <elementValue elementRef="DECODE" value="false" id="51"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1982" id="52"/>
-      <elementValue elementRef="DECODE" value="false" id="53"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1983" id="54"/>
-      <elementValue elementRef="DECODE" value="false" id="55"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1984" id="56"/>
-      <elementValue elementRef="DECODE" value="false" id="57"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1985" id="58"/>
-      <elementValue elementRef="DECODE" value="false" id="59"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1986" id="60"/>
-      <elementValue elementRef="DECODE" value="false" id="61"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1987" id="62"/>
-      <elementValue elementRef="DECODE" value="false" id="63"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1988" id="64"/>
-      <elementValue elementRef="DECODE" value="false" id="65"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1989" id="66"/>
-      <elementValue elementRef="DECODE" value="false" id="67"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1990" id="68"/>
-      <elementValue elementRef="DECODE" value="false" id="69"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1991" id="70"/>
-      <elementValue elementRef="DECODE" value="false" id="71"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1992" id="72"/>
-      <elementValue elementRef="DECODE" value="false" id="73"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1993" id="74"/>
-      <elementValue elementRef="DECODE" value="false" id="75"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1994" id="76"/>
-      <elementValue elementRef="DECODE" value="false" id="77"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1995" id="78"/>
-      <elementValue elementRef="DECODE" value="false" id="79"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1996" id="80"/>
-      <elementValue elementRef="DECODE" value="false" id="81"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1997" id="82"/>
-      <elementValue elementRef="DECODE" value="false" id="83"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1998" id="84"/>
-      <elementValue elementRef="DECODE" value="false" id="85"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1999" id="86"/>
-      <elementValue elementRef="DECODE" value="false" id="87"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2000" id="88"/>
-      <elementValue elementRef="DECODE" value="false" id="89"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2001" id="90"/>
-      <elementValue elementRef="DECODE" value="false" id="91"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2002" id="92"/>
-      <elementValue elementRef="DECODE" value="false" id="93"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2003" id="94"/>
-      <elementValue elementRef="DECODE" value="false" id="95"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2004" id="96"/>
-      <elementValue elementRef="DECODE" value="false" id="97"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2005" id="98"/>
-      <elementValue elementRef="DECODE" value="false" id="99"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2006" id="100"/>
-      <elementValue elementRef="DECODE" value="false" id="101"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2007" id="102"/>
-      <elementValue elementRef="DECODE" value="false" id="103"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2008" id="104"/>
-      <elementValue elementRef="DECODE" value="false" id="105"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2009" id="106"/>
-      <elementValue elementRef="DECODE" value="false" id="107"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2010" id="108"/>
-      <elementValue elementRef="DECODE" value="false" id="109"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2011" id="110"/>
-      <elementValue elementRef="DECODE" value="false" id="111"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2012" id="112"/>
-      <elementValue elementRef="DECODE" value="false" id="113"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2013" id="114"/>
-      <elementValue elementRef="DECODE" value="false" id="115"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2014" id="116"/>
-      <elementValue elementRef="DECODE" value="false" id="117"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2015" id="118"/>
-      <elementValue elementRef="DECODE" value="false" id="119"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2016" id="120"/>
-      <elementValue elementRef="DECODE" value="false" id="121"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2017" id="122"/>
-      <elementValue elementRef="DECODE" value="false" id="123"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2018" id="124"/>
-      <elementValue elementRef="DECODE" value="false" id="125"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2019" id="126"/>
-      <elementValue elementRef="DECODE" value="false" id="127"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2020" id="128"/>
-      <elementValue elementRef="DECODE" value="false" id="129"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2021" id="130"/>
-      <elementValue elementRef="DECODE" value="false" id="131"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2022" id="132"/>
-      <elementValue elementRef="DECODE" value="false" id="133"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2023" id="134"/>
-      <elementValue elementRef="DECODE" value="false" id="135"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2024" id="136"/>
-      <elementValue elementRef="DECODE" value="false" id="137"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2025" id="138"/>
-      <elementValue elementRef="DECODE" value="false" id="139"/>
     </elementParameter>
     <elementParameter field="TEXT" name="DESTINATION" value="" show="false"/>
     <elementParameter field="CHECK" name="USE_HEADER_AS_IS" value="false"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" value="100" show="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="CNX_CARGA_WORLD_BANK"/>
+    <elementParameter field="TEXT" name="LABEL" value="CNX_CARGA_WORLD_BANK_GDP"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="metadata" name="tFileInputDelimited_1">
+    <metadata connector="FLOW" label="MET_World_Bank" name="tFileInputDelimited_2">
       <column comment="" key="false" length="32" name="Country_Name" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="11" name="Country_Code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="19" name="Indicator_Name" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="19" name="Indicator_Code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1960" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1961" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1962" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1963" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1964" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1965" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1966" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1967" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1968" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1969" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1970" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1971" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1972" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1973" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1974" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1975" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1976" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1977" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1978" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1979" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1980" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1981" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1982" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1983" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1984" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1985" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1986" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1987" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1988" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1989" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1990" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1991" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1992" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1993" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1994" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1995" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1996" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1997" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1998" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1999" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2000" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2001" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2002" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2003" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2004" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2005" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2006" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2007" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2008" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2009" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2010" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2011" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2012" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2013" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2014" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2015" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2016" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2017" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2018" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2019" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2020" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2021" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2022" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2023" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2024" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2025" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_2022" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_2024" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
     </metadata>
-    <metadata connector="REJECT" label="metadata" name="REJECT">
+    <metadata connector="REJECT" label="MET_World_Bank" name="REJECT">
       <column comment="" key="false" length="32" name="Country_Name" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="11" name="Country_Code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="19" name="Indicator_Name" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="19" name="Indicator_Code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1960" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1961" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1962" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1963" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1964" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1965" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1966" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1967" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1968" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1969" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1970" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1971" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1972" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1973" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1974" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1975" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1976" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1977" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1978" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1979" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1980" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1981" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1982" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1983" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1984" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1985" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1986" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1987" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1988" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1989" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1990" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1991" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1992" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1993" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1994" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1995" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1996" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1997" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1998" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_1999" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2000" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2001" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2002" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2003" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2004" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2005" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2006" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2007" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2008" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2009" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2010" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2011" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2012" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2013" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2014" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2015" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2016" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2017" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2018" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2019" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2020" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2021" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2022" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2023" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2024" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="18" name="_2025" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_2022" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="_2024" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="520" posY="120">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="920" posY="200">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_1" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -592,336 +337,393 @@
     <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="out1">
-      <column comment="" key="false" length="-1" name="country_code" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="indicator_code" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    <metadata connector="FLOW" name="out_2022">
+      <column comment="" key="false" length="32" name="country_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="32" usefulColumn="true"/>
+      <column comment="" key="false" length="11" name="country_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="11" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="anio" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="valor" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="valor" nullable="true" pattern="" precision="-1" sourceType="" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_carga" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="FLOW" name="out_2024">
+      <column comment="" key="false" length="32" name="country_name" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="32" usefulColumn="true"/>
+      <column comment="" key="false" length="11" name="country_code" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="11" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_name" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_code" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="anio" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="valor" nullable="true" pattern="" precision="-1" sourceType="" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_carga" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
-      <outputTables sizeState="INTERMEDIATE" name="out1">
+      <outputTables sizeState="INTERMEDIATE" name="out_2022">
+        <mapperTableEntries name="country_name" expression="row1.Country_Name.replace(&quot;,&quot;, &quot; &quot;)" type="id_String" nullable="true"/>
         <mapperTableEntries name="country_code" expression="row1.Country_Code" type="id_String" nullable="true"/>
+        <mapperTableEntries name="indicator_name" expression="row1.Indicator_Name.replace(&quot;,&quot;, &quot; &quot;)" type="id_String" nullable="true"/>
+        <mapperTableEntries name="indicator_code" expression="row1.Indicator_Code" type="id_String" nullable="true"/>
+        <mapperTableEntries name="anio" expression="2022" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="valor" expression="(row1._2022 == null) ? 0.0 : row1._2022" type="id_Double" nullable="true"/>
+        <mapperTableEntries name="fecha_carga" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+      </outputTables>
+      <outputTables sizeState="INTERMEDIATE" name="out_2024">
+        <mapperTableEntries name="country_name" expression="row1.Country_Name.replace(&quot;,&quot;, &quot; &quot;)" type="id_String" nullable="true"/>
+        <mapperTableEntries name="country_code" expression="row1.Country_Code" type="id_String" nullable="true"/>
+        <mapperTableEntries name="indicator_name" expression="row1.Indicator_Name.replace(&quot;,&quot;, &quot; &quot;)" type="id_String" nullable="true"/>
         <mapperTableEntries name="indicator_code" expression="row1.Indicator_Code" type="id_String" nullable="true"/>
         <mapperTableEntries name="anio" expression="2024" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="valor" expression="(row1._2024 == null || row1._2024.trim().isEmpty()) ? 0.0 : Double.parseDouble(row1._2024)" type="id_String" nullable="true"/>
+        <mapperTableEntries name="valor" expression="(row1._2024 == null) ? 0.0 : row1._2024" type="id_Double" nullable="true"/>
+        <mapperTableEntries name="fecha_carga" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row1" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="Country_Name" type="id_String" nullable="true"/>
         <mapperTableEntries name="Country_Code" type="id_String" nullable="true"/>
         <mapperTableEntries name="Indicator_Name" type="id_String" nullable="true"/>
         <mapperTableEntries name="Indicator_Code" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1960" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1961" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1962" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1963" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1964" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1965" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1966" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1967" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1968" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1969" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1970" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1971" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1972" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1973" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1974" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1975" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1976" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1977" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1978" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1979" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1980" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1981" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1982" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1983" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1984" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1985" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1986" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1987" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1988" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1989" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1990" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1991" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1992" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1993" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1994" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1995" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1996" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1997" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1998" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_1999" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2000" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2001" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2002" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2003" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2004" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2005" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2006" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2007" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2008" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2009" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2010" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2011" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2012" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2013" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2014" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2015" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2016" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2017" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2018" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2019" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2020" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2021" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2022" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2023" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2024" type="id_String" nullable="true"/>
-        <mapperTableEntries name="_2025" type="id_String" nullable="true"/>
+        <mapperTableEntries name="_2022" type="id_Double" nullable="true"/>
+        <mapperTableEntries name="_2024" type="id_Double" nullable="true"/>
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="840" posY="120">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_1" show="false"/>
-    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
-    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
-    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE" value="true" show="false"/>
-    <elementParameter field="RADIO" name="PRINT_LABEL" value="false" show="false"/>
-    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" value="false" show="false"/>
-    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;|&quot;" show="false"/>
-    <elementParameter field="CHECK" name="PRINT_HEADER" value="false" show="false"/>
-    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" value="false" show="false"/>
-    <elementParameter field="CHECK" name="PRINT_COLNAMES" value="false" show="false"/>
-    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" value="false" show="false"/>
-    <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="Country_Name" id="0"/>
-      <elementValue elementRef="LENGTH" value="10" id="1"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Country_Code" id="2"/>
-      <elementValue elementRef="LENGTH" value="10" id="3"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Indicator_Name" id="4"/>
-      <elementValue elementRef="LENGTH" value="10" id="5"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Indicator_Code" id="6"/>
-      <elementValue elementRef="LENGTH" value="10" id="7"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1960" id="8"/>
-      <elementValue elementRef="LENGTH" value="10" id="9"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1961" id="10"/>
-      <elementValue elementRef="LENGTH" value="10" id="11"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1962" id="12"/>
-      <elementValue elementRef="LENGTH" value="10" id="13"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1963" id="14"/>
-      <elementValue elementRef="LENGTH" value="10" id="15"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1964" id="16"/>
-      <elementValue elementRef="LENGTH" value="10" id="17"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1965" id="18"/>
-      <elementValue elementRef="LENGTH" value="10" id="19"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1966" id="20"/>
-      <elementValue elementRef="LENGTH" value="10" id="21"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1967" id="22"/>
-      <elementValue elementRef="LENGTH" value="10" id="23"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1968" id="24"/>
-      <elementValue elementRef="LENGTH" value="10" id="25"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1969" id="26"/>
-      <elementValue elementRef="LENGTH" value="10" id="27"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1970" id="28"/>
-      <elementValue elementRef="LENGTH" value="10" id="29"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1971" id="30"/>
-      <elementValue elementRef="LENGTH" value="10" id="31"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1972" id="32"/>
-      <elementValue elementRef="LENGTH" value="10" id="33"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1973" id="34"/>
-      <elementValue elementRef="LENGTH" value="10" id="35"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1974" id="36"/>
-      <elementValue elementRef="LENGTH" value="10" id="37"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1975" id="38"/>
-      <elementValue elementRef="LENGTH" value="10" id="39"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1976" id="40"/>
-      <elementValue elementRef="LENGTH" value="10" id="41"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1977" id="42"/>
-      <elementValue elementRef="LENGTH" value="10" id="43"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1978" id="44"/>
-      <elementValue elementRef="LENGTH" value="10" id="45"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1979" id="46"/>
-      <elementValue elementRef="LENGTH" value="10" id="47"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1980" id="48"/>
-      <elementValue elementRef="LENGTH" value="10" id="49"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1981" id="50"/>
-      <elementValue elementRef="LENGTH" value="10" id="51"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1982" id="52"/>
-      <elementValue elementRef="LENGTH" value="10" id="53"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1983" id="54"/>
-      <elementValue elementRef="LENGTH" value="10" id="55"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1984" id="56"/>
-      <elementValue elementRef="LENGTH" value="10" id="57"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1985" id="58"/>
-      <elementValue elementRef="LENGTH" value="10" id="59"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1986" id="60"/>
-      <elementValue elementRef="LENGTH" value="10" id="61"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1987" id="62"/>
-      <elementValue elementRef="LENGTH" value="10" id="63"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1988" id="64"/>
-      <elementValue elementRef="LENGTH" value="10" id="65"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1989" id="66"/>
-      <elementValue elementRef="LENGTH" value="10" id="67"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1990" id="68"/>
-      <elementValue elementRef="LENGTH" value="10" id="69"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1991" id="70"/>
-      <elementValue elementRef="LENGTH" value="10" id="71"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1992" id="72"/>
-      <elementValue elementRef="LENGTH" value="10" id="73"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1993" id="74"/>
-      <elementValue elementRef="LENGTH" value="10" id="75"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1994" id="76"/>
-      <elementValue elementRef="LENGTH" value="10" id="77"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1995" id="78"/>
-      <elementValue elementRef="LENGTH" value="10" id="79"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1996" id="80"/>
-      <elementValue elementRef="LENGTH" value="10" id="81"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1997" id="82"/>
-      <elementValue elementRef="LENGTH" value="10" id="83"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1998" id="84"/>
-      <elementValue elementRef="LENGTH" value="10" id="85"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_1999" id="86"/>
-      <elementValue elementRef="LENGTH" value="10" id="87"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2000" id="88"/>
-      <elementValue elementRef="LENGTH" value="10" id="89"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2001" id="90"/>
-      <elementValue elementRef="LENGTH" value="10" id="91"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2002" id="92"/>
-      <elementValue elementRef="LENGTH" value="10" id="93"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2003" id="94"/>
-      <elementValue elementRef="LENGTH" value="10" id="95"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2004" id="96"/>
-      <elementValue elementRef="LENGTH" value="10" id="97"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2005" id="98"/>
-      <elementValue elementRef="LENGTH" value="10" id="99"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2006" id="100"/>
-      <elementValue elementRef="LENGTH" value="10" id="101"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2007" id="102"/>
-      <elementValue elementRef="LENGTH" value="10" id="103"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2008" id="104"/>
-      <elementValue elementRef="LENGTH" value="10" id="105"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2009" id="106"/>
-      <elementValue elementRef="LENGTH" value="10" id="107"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2010" id="108"/>
-      <elementValue elementRef="LENGTH" value="10" id="109"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2011" id="110"/>
-      <elementValue elementRef="LENGTH" value="10" id="111"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2012" id="112"/>
-      <elementValue elementRef="LENGTH" value="10" id="113"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2013" id="114"/>
-      <elementValue elementRef="LENGTH" value="10" id="115"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2014" id="116"/>
-      <elementValue elementRef="LENGTH" value="10" id="117"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2015" id="118"/>
-      <elementValue elementRef="LENGTH" value="10" id="119"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2016" id="120"/>
-      <elementValue elementRef="LENGTH" value="10" id="121"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2017" id="122"/>
-      <elementValue elementRef="LENGTH" value="10" id="123"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2018" id="124"/>
-      <elementValue elementRef="LENGTH" value="10" id="125"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2019" id="126"/>
-      <elementValue elementRef="LENGTH" value="10" id="127"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2020" id="128"/>
-      <elementValue elementRef="LENGTH" value="10" id="129"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2021" id="130"/>
-      <elementValue elementRef="LENGTH" value="10" id="131"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2022" id="132"/>
-      <elementValue elementRef="LENGTH" value="10" id="133"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2023" id="134"/>
-      <elementValue elementRef="LENGTH" value="10" id="135"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2024" id="136"/>
-      <elementValue elementRef="LENGTH" value="10" id="137"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="_2025" id="138"/>
-      <elementValue elementRef="LENGTH" value="10" id="139"/>
-    </elementParameter>
-    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
-    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" value="100" show="false"/>
+  <node componentName="tHashOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1040" posY="360">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHashOutput_2" show="false"/>
+    <elementParameter field="CHECK" name="LINK_WITH" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="LIST" value="tHashOutput_1"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_WRITE_MODEL" value="MEMORY" show="false"/>
+    <elementParameter field="FILE" name="BASE_FILE_PATH" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/in.hash&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MEMORY_HEAP_MAX_SIZE" value="2" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="KEYS_MANAGEMENT" value="KEEP_ALL" show="false"/>
+    <elementParameter field="CHECK" name="APPEND" value="true" show="false"/>
+    <elementParameter field="CHECK" name="HASH_KEY_FROM_INPUT_CONNECTOR" value="false" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="MET_World_Bank" name="tLogRow_1">
-      <column comment="" key="false" length="32" name="Country_Name" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="11" name="Country_Code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="19" name="Indicator_Name" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="19" name="Indicator_Code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1960" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1961" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1962" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1963" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1964" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1965" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1966" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1967" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1968" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1969" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1970" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1971" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1972" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1973" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1974" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1975" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1976" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1977" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1978" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1979" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1980" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1981" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1982" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1983" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1984" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1985" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1986" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1987" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1988" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1989" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1990" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1991" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1992" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1993" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1994" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1995" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1996" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1997" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1998" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_1999" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2000" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2001" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2002" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2003" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2004" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2005" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2006" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2007" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2008" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2009" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2010" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2011" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2012" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2013" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2014" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2015" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2016" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2017" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2018" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2019" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2020" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2021" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2022" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2023" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2024" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="_2025" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Double" usefulColumn="true"/>
+    <metadata connector="FLOW" name="tHashOutput_2">
+      <column comment="" key="false" length="32" name="country_name" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="32" usefulColumn="true"/>
+      <column comment="" key="false" length="11" name="country_code" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="11" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_name" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_code" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="anio" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="valor" nullable="true" pattern="" precision="-1" sourceType="" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_carga" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tMap_1">
+  <node componentName="tHashOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1120" posY="200">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHashOutput_1" show="false"/>
+    <elementParameter field="CHECK" name="LINK_WITH" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="LIST" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_WRITE_MODEL" value="MEMORY"/>
+    <elementParameter field="FILE" name="BASE_FILE_PATH" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/in.hash&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MEMORY_HEAP_MAX_SIZE" value="2" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="KEYS_MANAGEMENT" value="KEEP_ALL"/>
+    <elementParameter field="CHECK" name="APPEND" value="true"/>
+    <elementParameter field="CHECK" name="HASH_KEY_FROM_INPUT_CONNECTOR" value="false" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tHashOutput_1">
+      <column comment="" key="false" length="32" name="country_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="32" usefulColumn="true"/>
+      <column comment="" key="false" length="11" name="country_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="11" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="anio" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="valor" nullable="true" pattern="" precision="-1" sourceType="" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_carga" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tHashInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="40">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHashInput_1" show="false"/>
+    <elementParameter field="CHECK" name="LINK_WITH" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="LIST" value="tHashOutput_1"/>
+    <elementParameter field="FILE" name="BASE_FILE_PATH" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/in.hash&quot;" show="false"/>
+    <elementParameter field="CHECK" name="RELEASE_CACHE" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tHashInput_1">
+      <column comment="" key="false" length="32" name="country_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="32" usefulColumn="true"/>
+      <column comment="" key="false" length="11" name="country_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="11" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="anio" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="valor" nullable="true" pattern="" precision="-1" sourceType="" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_carga" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1360" posY="80">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBigQueryOutput_1" show="false"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" value="bigquery_id" show="false"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/gdp_bulk.txt&quot;"/>
+    <elementParameter field="CHECK" name="APPEND" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" value="enc:system.encryption.key.v1:DMEvfQpuOSxMT98ofJh28wK6+DkxtxEHpP2dKPcg" show="false"/>
+    <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;" show="false"/>
+    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;D:/HP/Descargas/evargashackaton4-538962029d61.json&quot;"/>
+    <elementParameter field="TEXT" name="CLIENT_ID" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" value="enc:system.encryption.key.v1:pvExxNSnVNtw0WZcS1JZe9Dn0cVXvMVLRdSI4SNb" show="false"/>
+    <elementParameter field="TEXT" name="AUTHORIZATION_CODE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;evargashackaton4&quot;"/>
+    <elementParameter field="TEXT" name="DATASET" value="&quot;staging_hackaton&quot;"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;stg_world_bank&quot;"/>
+    <elementParameter field="CHECK" name="CREATE_TABLE_IF_NOT_EXIST" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="ACTION_ON_DATA" value="APPEND"/>
+    <elementParameter field="CHECK" name="BULK_FILE_ALREADY_EXIST" value="false" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_TYPE" value="GS_SERVICE_ACCOUNT"/>
+    <elementParameter field="FILE" name="GS_SERVICE_ACCOUNT_KEY" value="&quot;D:/HP/Descargas/evargashackaton4-538962029d61.json&quot;"/>
+    <elementParameter field="PASSWORD" name="GS_ACCESS_TOKEN" value="enc:system.encryption.key.v1:XgvvelkB7+5Zl04JuSPfHrFp234o+TU+SJZ+UGG+" show="false"/>
+    <elementParameter field="LABEL" name="GS_ACCESS_TOKEN_WARNING" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;" show="false"/>
+    <elementParameter field="TEXT" name="BUCKET_NAME" value="&quot;bucket_hackaton_erick_vargas&quot;"/>
+    <elementParameter field="TEXT" name="GS_FILE" value="&quot;gs://bucket_hackaton_erick_vargas/gdp_bulk.txt&quot;"/>
+    <elementParameter field="TEXT" name="GS_FILE_HEADER" value="0"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_GS" value="&quot;https://storage.googleapis.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" value="&quot;https://bigquery.googleapis.com&quot;" show="false"/>
+    <elementParameter field="FILE" name="TOKEN_NAME" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/token.properties&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_12_HOUR_FORMAT" value="false"/>
+    <elementParameter field="CHECK" name="SET_FIELD_DELIMITER" value="true" show="false"/>
+    <elementParameter field="TEXT" name="FIELD_DELIMITER" value="&quot;,&quot;" show="false"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;,&quot;"/>
+    <elementParameter field="CHECK" name="DROP" value="false"/>
+    <elementParameter field="TEXT" name="ESCAPE_CHAR" value="&quot;\\&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TEXT_ENCLOSURE" value="&quot;\&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_CUSTOM_NULL_MARKER" value="false"/>
+    <elementParameter field="TEXT" name="CUSTOM_NULL_MARKER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="CREATE" value="true"/>
+    <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
+    <elementParameter field="TEXT" name="FLUSHONROW_NUM" value="1" show="false"/>
+    <elementParameter field="CHECK" name="RECORDS_CONTAIN_NULL_VALUE" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CHECK_DISK_SPACE" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tBigQueryOutput_1">
+      <column comment="" key="false" length="32" name="country_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="32" usefulColumn="true"/>
+      <column comment="" key="false" length="11" name="country_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="11" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_name" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="indicator_code" nullable="true" pattern="" precision="0" sourceType="" type="id_String" originalLength="19" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="anio" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="valor" nullable="true" pattern="" precision="-1" sourceType="" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_carga" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tBigQuerySQLRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1360" posY="280">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBigQuerySQLRow_2" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" value="enc:system.encryption.key.v1:j2J2xU9nxfYa+p6pC7gbodz79WnW0KbOqueOWgDE" show="false"/>
+    <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;" show="false"/>
+    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;D:/HP/Descargas/evargashackaton4-538962029d61.json&quot;"/>
+    <elementParameter field="TEXT" name="CLIENT_ID" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" value="enc:system.encryption.key.v1:iysaDDkPchADacEC9vJpaZJUP25AIYsGk6QJjeyj" show="false"/>
+    <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;evargashackaton4&quot;"/>
+    <elementParameter field="TEXT" name="AUTHORIZATION_CODE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;UPDATE `evargashackaton4.staging_hackaton.control_procesos` &#xD;&#xA;SET estado = 'COMPLETADO', &#xD;&#xA;    filas_insertadas = &quot; + ((Integer)globalMap.get(&quot;tHashInput_1_NB_LINE&quot;)) + &quot; &#xD;&#xA;WHERE estado = 'PROCESANDO' AND nombre_archivo = 'API_GDP_WORLD_BANK.csv'&quot;"/>
+    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" value="&quot;https://bigquery.googleapis.com&quot;" show="false"/>
+    <elementParameter field="FILE" name="TOKEN_NAME" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/token.properties&quot;" show="false"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" value="&quot;,&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" value="&quot;.&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
+    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="AUTO" show="false"/>
+    <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tBigQuerySQLRow_2"/>
+  </node>
+  <node componentName="tLogCatcher" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="280" posY="560">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogCatcher_1" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_JAVA_EXCEPTION" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_TDIE" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_TWARN" value="true"/>
+    <elementParameter field="CHECK" name="CATCH_TACTIONFAILURE" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogCatcher_1">
+      <column defaultValue="" key="false" length="0" name="moment" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="0" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="pid" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="root_pid" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="father_pid" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="50" name="project" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="job" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="50" name="context" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="3" name="priority" nullable="true" precision="0" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="type" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="origin" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="message" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="3" name="code" nullable="true" precision="0" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="480" posY="560">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_2" show="false"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_8Pf_cC68EfG0bqjInu4y5w-tMap_2-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="LEVENSHTEIN" value="0" show="false"/>
+    <elementParameter field="TEXT" name="JACCARD" value="0" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="out">
+      <column comment="" key="false" length="-1" name="id_error" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="nombre_archivo" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="mensaje_error" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fila_completa" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_error" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties shellMaximized="true"/>
+      <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="out">
+        <mapperTableEntries name="id_error" expression="java.util.UUID.randomUUID().toString()" type="id_String" nullable="true"/>
+        <mapperTableEntries name="nombre_archivo" expression="&quot;API_GDP_WORLD_BANK.csv&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="mensaje_error" expression="row3.message" type="id_String" nullable="true"/>
+        <mapperTableEntries name="fila_completa" expression="row3.origin" type="id_String" nullable="true"/>
+        <mapperTableEntries name="fecha_error" expression="row3.moment" type="id_Date" nullable="true"/>
+      </outputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row3" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="moment" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="pid" type="id_String" nullable="true"/>
+        <mapperTableEntries name="root_pid" type="id_String" nullable="true"/>
+        <mapperTableEntries name="father_pid" type="id_String" nullable="true"/>
+        <mapperTableEntries name="project" type="id_String" nullable="true"/>
+        <mapperTableEntries name="job" type="id_String" nullable="true"/>
+        <mapperTableEntries name="context" type="id_String" nullable="true"/>
+        <mapperTableEntries name="priority" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="type" type="id_String" nullable="true"/>
+        <mapperTableEntries name="origin" type="id_String" nullable="true"/>
+        <mapperTableEntries name="message" type="id_String" nullable="true"/>
+        <mapperTableEntries name="code" type="id_Integer" nullable="true"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="720" posY="560">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBigQueryOutput_2" show="false"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" value="bigquery_id" show="false"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/log_bulk.txt&quot;"/>
+    <elementParameter field="CHECK" name="APPEND" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" value="enc:system.encryption.key.v1:6UjfU1clJDbhPAzJEWbMc4TiBURcrVWOQvT5Ff/Y" show="false"/>
+    <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;" show="false"/>
+    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;D:/HP/Descargas/evargashackaton4-538962029d61.json&quot;"/>
+    <elementParameter field="TEXT" name="CLIENT_ID" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" value="enc:system.encryption.key.v1:5vq16MfHxv+JB+CxnEGU4DBj5lU2BYE3fY9Wv8k1" show="false"/>
+    <elementParameter field="TEXT" name="AUTHORIZATION_CODE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;evargashackaton4&quot;"/>
+    <elementParameter field="TEXT" name="DATASET" value="&quot;staging_hackaton&quot;"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;log_errores&quot;"/>
+    <elementParameter field="CHECK" name="CREATE_TABLE_IF_NOT_EXIST" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="ACTION_ON_DATA" value="APPEND"/>
+    <elementParameter field="CHECK" name="BULK_FILE_ALREADY_EXIST" value="false" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_TYPE" value="GS_SERVICE_ACCOUNT"/>
+    <elementParameter field="FILE" name="GS_SERVICE_ACCOUNT_KEY" value="&quot;D:/HP/Descargas/evargashackaton4-538962029d61.json&quot;"/>
+    <elementParameter field="PASSWORD" name="GS_ACCESS_TOKEN" value="enc:system.encryption.key.v1:8puTJT5/+bh51O7DkaU3LmbaigjmvKDCzE+DE1Xu" show="false"/>
+    <elementParameter field="LABEL" name="GS_ACCESS_TOKEN_WARNING" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;" show="false"/>
+    <elementParameter field="TEXT" name="BUCKET_NAME" value="&quot;bucket_hackaton_erick_vargas&quot;"/>
+    <elementParameter field="TEXT" name="GS_FILE" value="&quot;gs://bucket_hackaton_erick_vargas/log_bulk.txt&quot;"/>
+    <elementParameter field="TEXT" name="GS_FILE_HEADER" value="0"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_GS" value="&quot;https://storage.googleapis.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" value="&quot;https://bigquery.googleapis.com&quot;" show="false"/>
+    <elementParameter field="FILE" name="TOKEN_NAME" value="&quot;C:/Program Files (x86)/Talend-Studio/studio/workspace/token.properties&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_12_HOUR_FORMAT" value="false"/>
+    <elementParameter field="CHECK" name="SET_FIELD_DELIMITER" value="true" show="false"/>
+    <elementParameter field="TEXT" name="FIELD_DELIMITER" value="&quot;,&quot;" show="false"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;,&quot;"/>
+    <elementParameter field="CHECK" name="DROP" value="false"/>
+    <elementParameter field="TEXT" name="ESCAPE_CHAR" value="&quot;\\&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TEXT_ENCLOSURE" value="&quot;\&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_CUSTOM_NULL_MARKER" value="false"/>
+    <elementParameter field="TEXT" name="CUSTOM_NULL_MARKER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="CREATE" value="true"/>
+    <elementParameter field="CHECK" name="FLUSHONROW" value="false"/>
+    <elementParameter field="TEXT" name="FLUSHONROW_NUM" value="1" show="false"/>
+    <elementParameter field="CHECK" name="RECORDS_CONTAIN_NULL_VALUE" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CHECK_DISK_SPACE" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tBigQueryOutput_2">
+      <column comment="" key="false" length="-1" name="id_error" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="nombre_archivo" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="mensaje_error" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fila_completa" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fecha_error" nullable="true" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tBigQuerySQLRow_1" offsetLabelX="0" offsetLabelY="0" source="tBigQuerySQLRow_1" target="tS3Connection_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk1" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tS3Connection_1" offsetLabelX="0" offsetLabelY="0" source="tS3Connection_1" target="tS3Get_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk1" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tS3Get_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tS3Get_1" target="tFileInputDelimited_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk2" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tS3Get_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tS3Get_1" target="tHashInput_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk3" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputDelimited_2" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_2" target="tMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row1" show="false"/>
   </connection>
-  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tLogRow_1">
+  <connection connectorName="FLOW" label="out_2022" lineStyle="0" metaname="out_2022" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tHashOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="out1" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="out_2022" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="out_2024" lineStyle="0" metaname="out_2024" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tHashOutput_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="out_2024" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tHashInput_1" offsetLabelX="0" offsetLabelY="0" source="tHashInput_1" target="tBigQueryOutput_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row2" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tBigQueryOutput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryOutput_1" target="tBigQuerySQLRow_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk2" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tLogCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tLogCatcher_1" target="tMap_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row3" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="out" lineStyle="0" metaname="out" offsetLabelX="0" offsetLabelY="0" source="tMap_2" target="tBigQueryOutput_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="out" show="false"/>
   </connection>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_1" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBigQuerySQLRow_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="255;255;255" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="47;47;47"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tS3Connection_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="255;255;255" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="47;47;47"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tS3Get_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="255;255;255" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="47;47;47"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="255;255;255" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="47;47;47"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHashInput_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="255;255;255" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="47;47;47"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBigQuerySQLRow_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="255;255;255" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="47;47;47"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogCatcher_1" show="false"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="255;255;255" show="false"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="47;47;47"/>
   </subjob>
